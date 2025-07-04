@@ -1,4 +1,7 @@
 import json
+from django.conf import settings
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from rest_framework import views, response, status
 from webhooks.models import Webhook
 from webhooks.messages import outflow_message
@@ -37,6 +40,18 @@ class WebhookOrderView(views.APIView):
         # Instancio o serviço e chamo a mensagem
         callmebot = CallMeBot()
         callmebot.send_message(message)
+
+        # Adicionando novos dados nos dados da requisição
+        data['total_value'] = total_value
+        data['profit_value'] = profit_value
+        send_mail(
+            subject='Nova Saída - Gestão de Controle de Estoque',
+            message='',
+            from_email=f'Gestão de Controle de Estoque - <{settings.EMAIL_HOST_USER}>',
+            recipient_list=[settings.EMAIL_ADMIN_RECEIVER],
+            html_message=render_to_string('email_outflow.html', data),
+            fail_silently=False,
+        )
 
         return response.Response(
             data=data,
