@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notificação de Saída</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+
+  <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 6px; padding: 30px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);">
+    
+    <h2 style="color: #333333;">📦 Nova saída registrada no estoque</h2>
+
+    <p style="font-size: 16px; color: #555555;">
+      Uma nova saída foi registrada no sistema de gestão de controle de estoque com os seguintes detalhes:
+    </p>
+
+    <table style="width: 100%; font-size: 16px; margin-top: 20px;">
+      <tr>
+        <td><strong>Produto:</strong></td>
+        <td>{{ product }}</td>
+      </tr>
+      <tr>
+        <td><strong>Quantidade:</strong></td>
+        <td>{{ quantity }}</td>
+      </tr>
+      <tr>
+        <td><strong>Valor da venda:</strong></td>
+        <td>R$ {{ total_value }}</td>
+      </tr>
+      <tr>
+        <td><strong>Lucro estimado:</strong></td>
+        <td>R$ {{ profit_value }}</td>
+      </tr>
+    </table>
+
+    <p style="font-size: 16px; margin-top: 40px; color: #555555;">
+      Caso não reconheça esta movimentação, por favor, verifique no sistema.
+    </p>
+
+    <p style="font-size: 16px; color: #555555;">
+      Atenciosamente, <br />
+      <strong>Equipe da Gestão de Controle de Estoque</strong>
+    </p>
+  </div>
+
+</body>
+</html>
