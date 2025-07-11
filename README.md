@@ -43,4 +43,38 @@ Ele recebe eventos de outro sistema via requisições HTTP `POST` com dados estr
 ## ⚙️ Funcionamento
 
 ### 🔁 Fluxo de evento:
+[ Sistema Principal ] ─── POST /api/v1/webhooks/order/ ───▶ [ Notifica (este projeto) ] ──▶ ações: email, WhatsApp, etc.
 
+### 📥 Exemplo de evento recebido:
+
+```json
+{
+  "event_type": "outflow",
+  "timestamp": "2025-06-29 13:45:00",
+  "product": "Café",
+  "product_selling_price": 12.5,
+  "quantity": 3,
+  "description": "Venda balcão"
+}
+```
+
+## ⚙️ Como utilizar
+```bash
+Clone o repositório:
+git clone https://github.com/seu-usuario/webhook-notify.git
+cd webhook-notify
+```
+
+```bash
+Crie um ambiente virtual e instale as dependências:
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+```bash
+Inicie o servidor:
+python manage.py runserver 8001
+```
+
+Acessar a aplicação http://localhost:8001
